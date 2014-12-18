@@ -3,6 +3,12 @@ BigIntegerExtender
 
 BigIntegerExtender extends System.Numerics.BigInteger to support serialization and the calculation of square roots.
 
+Download binaries
+[](/releases/download/v1.0.0.0-beta/BigIntegerExtender.dll)
+
+How to Engage, Contribute and Provide Feedback
+==================
+To contribute and find out how you can build test BigIntegerExtender see the Contributing Guide (work in progress).
 
 License
 ==================
