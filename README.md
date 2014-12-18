@@ -6,4 +6,4 @@ BigIntegerExtender extends System.Numerics.BigInteger to support serialization a
 
 License
 ==================
-This project is licensed under the [MIT license](blob/master/LICENSE).
+This project is licensed under the [MIT license](LICENSE).
