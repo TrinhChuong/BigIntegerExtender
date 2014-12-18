@@ -8,7 +8,7 @@ Download binaries
 
 How to Engage, Contribute and Provide Feedback
 ==================
-To contribute and find out how you can build test BigIntegerExtender see the Contributing Guide (work in progress).
+To contribute and find out how you can test BigIntegerExtender see the Contributing Guide (work in progress).
 
 License
 ==================
