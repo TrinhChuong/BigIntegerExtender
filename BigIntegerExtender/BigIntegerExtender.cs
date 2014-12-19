@@ -2,6 +2,9 @@
 
 namespace System.Numerics
 {
+    /// <summary>
+    /// Extends System.Numerics.BigInteger to support the calculation of square roots.
+    /// </summary>
     public static class BigIntegerExtender
     {
         /// <remarks>An extension method for <c>System.Numerics.BigInteger</c>.</remarks>
