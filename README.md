@@ -5,6 +5,7 @@ BigIntegerExtender extends System.Numerics.BigInteger to support serialization a
 Download binaries
 ==================
 [DLL v1.0.0.0-beta.1](//github.com/Davide95/BigIntegerExtender/releases/download/v1.0.0.0-beta.1/BigIntegerExtender.dll).
+
 [XML documentation v1.0.0.0-beta.1](//github.com/Davide95/BigIntegerExtender/releases/download/v1.0.0.0-beta.1/BigIntegerExtender.XML).
 
 How to Engage, Contribute and Provide Feedback
