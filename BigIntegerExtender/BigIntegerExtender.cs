@@ -34,7 +34,7 @@ namespace System.Numerics
             // An initial approximation of the square root of n.
             BigInteger squareRoot = value / 2;
 
-            // It uses Newton's method.
+            // Newton's method.
             while (true)
             {
                 var lowerBound = BigInteger.Pow(squareRoot, 2);

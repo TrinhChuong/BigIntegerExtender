@@ -1,6 +1,6 @@
-﻿using System.Xml;
+﻿using System.Globalization;
+using System.Xml;
 using System.Xml.Serialization;
-using System.Globalization;
 
 namespace System.Numerics
 {
@@ -10,7 +10,12 @@ namespace System.Numerics
     [Serializable]
     public struct BigIntegerSerializable : IXmlSerializable
     {
-        /// <seealso cref="System.Object.Equals(Object)"/>
+        /// <summary>
+        /// Determines whether <paramref name="obj"/> is equal 
+        /// to the current <c>System.Numerics.BigIntegerSerializable</c> object.
+        /// </summary>
+        /// <param name="obj">The object to compare.</param>
+        /// <seealso cref="System.Object.Equals(Object)" />
         public override bool Equals(object obj)
         {
             if (obj is BigIntegerSerializable)
@@ -24,8 +29,7 @@ namespace System.Numerics
         /// and a specified <c>System.Numerics.BigIntegerSerializable</c> object
         /// have the same value.
         /// </summary>
-        /// <param name="biS">The object to compare.</param>
-        /// <returns></returns>
+        /// <param name="biS">The <c>System.Numerics.BigIntegerSerializable</c> object to compare.</param>
         public bool Equals(BigIntegerSerializable biS)
         {
             return this.Value.Equals(biS.Value);
@@ -54,7 +58,10 @@ namespace System.Numerics
             return !biS1.Equals(biS2);
         }
 
-        /// <seealso cref="Object.GetHashCode" />
+        /// <summary>
+        /// Returns the hash code for this <c>System.Numerics.BigIntegerSerializable</c> object.
+        /// </summary>
+        /// <seealso cref="System.Object.GetHashCode" />
         public override int GetHashCode()
         {
             return this.Value.GetHashCode();
@@ -113,7 +120,7 @@ namespace System.Numerics
         }
 
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="reader" /> is <c>null</c>.</exception>
-        /// <exception cref="System.FormatException">Thrown when <paramref name="reader" /> is not a string rapresentation of a number.</exception>
+        /// <exception cref="System.FormatException">Thrown when <paramref name="reader" /> is not a string representation of a number.</exception>
         void IXmlSerializable.ReadXml(XmlReader reader)
         {
             if (reader == null)
