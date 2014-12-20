@@ -3,17 +3,19 @@
 namespace System.Numerics
 {
     /// <summary>
-    /// Extends System.Numerics.BigInteger to support the calculation of square roots.
+    /// Extends <c>System.Numerics.BigInteger</c> to support the calculation of square roots.
     /// </summary>
     public static class BigIntegerExtender
     {
+        /// <summary>
+        /// Returns the square root of a specified number.
+        /// </summary>
         /// <remarks>An extension method for <c>System.Numerics.BigInteger</c>.</remarks>
         /// <param name="value">The number whose square root is to be found.</param>
         /// <param name="isPerfect">If <c>BigInteger.Pow(value.Sqrt(), 2) = value</c> it is <c>true</c>, otherwise it is <c>false</c>.</param>
-        /// <param name="ceiling">If the square root is not perfect, it rounds up it.</param>
+        /// <param name="ceiling">If the square root is not perfect, it rounds up it if it is <c>true</c>.</param>
         /// <exception cref="System.ArithmeticException">Thrown when <paramref name="value" /> is negative.</exception>
-        /// <returns>Return the square root of a specified number.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#"),
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#"), 
             System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"),
             System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sqrt")]
         public static BigInteger Sqrt(this BigInteger value, out bool isPerfect, bool ceiling = true)
@@ -55,11 +57,27 @@ namespace System.Numerics
                     else
                         return squareRoot;
                 }
-
+                
                 // x_(n+1) = (x_n + S / x_n) / 2
                 squareRoot += (value / squareRoot);
                 squareRoot /= 2;
             }
+        }
+
+        /// <summary>
+        /// Returns the square root of a specified number.
+        /// </summary>
+        /// <remarks>An extension method for <c>System.Numerics.BigInteger</c>.</remarks>
+        /// <param name="value">The number whose square root is to be found.</param>
+        /// <param name="ceiling">If the square root is not perfect, it rounds up it if it is <c>true</c>.</param>
+        /// <exception cref="System.ArithmeticException">Thrown when <paramref name="value" /> is negative.</exception>
+        /// <seealso cref="BigIntegerExtender.Sqrt(BigInteger, out bool, bool)" />
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed"), 
+            System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sqrt")]
+        public static BigInteger Sqrt(this BigInteger value, bool ceiling = true)
+        {
+            bool isPerfect;
+            return value.Sqrt(out isPerfect, ceiling);
         }
     }
 }
