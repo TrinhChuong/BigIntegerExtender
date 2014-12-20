@@ -3,6 +3,7 @@ using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace UnitTestBigIntegerExtender
 {
@@ -40,16 +41,28 @@ namespace UnitTestBigIntegerExtender
             {
                 BigIntegerSerializable biS = n;
                 var mem = new MemoryStream();
-                var bf = new BinaryFormatter();
+                var serializer = new XmlSerializer(biS.GetType());
                 try
                 {
-                    bf.Serialize(mem, biS);
+                    serializer.Serialize(mem, biS);
                 }
                 catch (Exception ex)
                 {
                     Assert.Fail(ex.Message);
                 }
+
+                BigInteger deserialized = mersenneN;
+                try
+                {
+                    deserialized = (BigIntegerSerializable)serializer.Deserialize(mem);
                 }
+                catch (Exception ex)
+                {
+                    Assert.Fail(ex.Message);
+                }
+
+                Assert.AreEqual(biS, deserialized);
+            }
         }
 
         private BigInteger mersenneN = 127;

@@ -61,15 +61,5 @@ namespace System.Numerics
                 squareRoot /= 2;
             }
         }
-
-        /// <param name="value">The number whose square root is to be found.</param>
-        /// <param name="isPerfect">If <c>BigInteger.Pow(value.Sqrt(), 2) = value</c> it is <c>true</c>, otherwise it is <c>false</c>.</param>
-        /// <param name="ceiling">If the square root is not perfect, it rounds up it.</param>
-        /// <exception cref="System.ArithmeticException">Thrown when <paramref name="value" /> is negative.</exception>
-        /// <returns>Return the square root of <paramref name="value" />.</returns>
-        public static BigInteger Sqrt(BigInteger value, out bool isPerfect, bool ceiling = true)
-        {
-            return value.Sqrt(out isPerfect, ceiling);
-        }
     }
 }
