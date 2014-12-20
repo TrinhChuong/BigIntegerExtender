@@ -9,7 +9,7 @@ namespace System.Numerics
     {
         /// <remarks>An extension method for <c>System.Numerics.BigInteger</c>.</remarks>
         /// <param name="value">The number whose square root is to be found.</param>
-        /// <param name="isPerfect">If <c>BigInteger.Pow(value.Sqrt(), 2) = value</c> it is <c>true</c>, otherwise it is <c>false</c></param>
+        /// <param name="isPerfect">If <c>BigInteger.Pow(value.Sqrt(), 2) = value</c> it is <c>true</c>, otherwise it is <c>false</c>.</param>
         /// <param name="ceiling">If the square root is not perfect, it rounds up it.</param>
         /// <exception cref="System.ArithmeticException">Thrown when <paramref name="value" /> is negative.</exception>
         /// <returns>Return the square root of a specified number.</returns>
@@ -63,7 +63,7 @@ namespace System.Numerics
         }
 
         /// <param name="value">The number whose square root is to be found.</param>
-        /// <param name="isPerfect">If <c>BigInteger.Pow(value.Sqrt(), 2) = value</c> it is <c>true</c>, otherwise it is <c>false</c></param>
+        /// <param name="isPerfect">If <c>BigInteger.Pow(value.Sqrt(), 2) = value</c> it is <c>true</c>, otherwise it is <c>false</c>.</param>
         /// <param name="ceiling">If the square root is not perfect, it rounds up it.</param>
         /// <exception cref="System.ArithmeticException">Thrown when <paramref name="value" /> is negative.</exception>
         /// <returns>Return the square root of <paramref name="value" />.</returns>
