@@ -1,6 +1,10 @@
 BigIntegerExtender
 ==================
 BigIntegerExtender extends System.Numerics.BigInteger to support serialization and the calculation of square roots.
+It contains:
+* **BigIntegerSerializable**: with this you can serialize System.Numerics.BigInteger objects.
+* **BigIntegerExtender**: it has an extension method that add the function Sqrt to System.Numerics.BigInteger objects.
+To understand how it works and how to use it, see the Examples (work in progress).
 
 Download binaries
 ==================
