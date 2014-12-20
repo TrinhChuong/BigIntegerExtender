@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -56,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BigIntegerExtenderTests.cs" />
+    <Compile Include="BigIntegerSerializableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BigIntegerExtender\BigIntegerExtender.csproj">
