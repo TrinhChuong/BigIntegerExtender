@@ -40,7 +40,36 @@ namespace Example1
     }
 }
 ```
+```cs
+using System;
+using System.Numerics;
 
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                BigInteger value;
+                do
+                {
+                    Console.Write("Enter a valid number: ");
+                } while (!BigInteger.TryParse(Console.ReadLine(), out value));
+
+                var ms = new System.IO.MemoryStream();
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(BigIntegerSerializable));
+                serializer.Serialize(ms, (BigIntegerSerializable)value);
+
+                Console.Write("\nXML: ");
+                Console.WriteLine(System.Text.Encoding.UTF8.GetString(ms.ToArray()));
+                Console.WriteLine("\n");
+            }
+        }
+    }
+}
+```
 How to Engage, Contribute and Provide Feedback
 ==================
 1. If you want to contribute, make sure that there is a corresponding issue for your change first. If there is none, create one.
