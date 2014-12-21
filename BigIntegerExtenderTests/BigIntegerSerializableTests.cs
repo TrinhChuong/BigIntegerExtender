@@ -3,7 +3,6 @@ using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Serialization;
 using System.IO;
-using System.Text;
 
 namespace BigIntegerExtenderTests
 {
