@@ -5,17 +5,83 @@ It contains:
 * **BigIntegerSerializable**: with this you can serialize System.Numerics.BigInteger objects.
 * **BigIntegerExtender**: it has an extension method that add the function Sqrt to System.Numerics.BigInteger objects.
 
-To understand how it works and how to use it, see the Examples (work in progress).
-
-Download binaries
+Examples
 ==================
-[DLL v1.0.0.0-beta.1](//github.com/Davide95/BigIntegerExtender/releases/download/v1.0.0.0-beta.1/BigIntegerExtender.dll).
+Remember to add System.Numerics.BigInteger, BigIntegerExtender and System.Xml before using this library in your projects.
+```cs
+using System;
+using System.Numerics;
 
-[XML documentation v1.0.0.0-beta.1](//github.com/Davide95/BigIntegerExtender/releases/download/v1.0.0.0-beta.1/BigIntegerExtender.XML).
+namespace Example1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                BigInteger value;
+                do
+                {
+                    Console.Write("Enter a valid number: ");
+                } while (!BigInteger.TryParse(Console.ReadLine(), out value));
 
+                try
+                {
+                    BigInteger sqrt = value.Sqrt();
+                    Console.WriteLine(String.Format("Sqrt of {0}: {1}\n", value, sqrt));
+                }
+                catch(ArithmeticException)
+                {
+                    Console.WriteLine(String.Format("Sqrt of {0}: NaN\n", value));
+                }
+            }
+        }
+    }
+}
+```
+```cs
+using System;
+using System.Numerics;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                BigInteger value;
+                do
+                {
+                    Console.Write("Enter a valid number: ");
+                } while (!BigInteger.TryParse(Console.ReadLine(), out value));
+
+                var ms = new System.IO.MemoryStream();
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(BigIntegerSerializable));
+                serializer.Serialize(ms, (BigIntegerSerializable)value);
+
+                Console.Write("\nXML: ");
+                Console.WriteLine(System.Text.Encoding.UTF8.GetString(ms.ToArray()));
+                Console.WriteLine("\n");
+            }
+        }
+    }
+}
+```
 How to Engage, Contribute and Provide Feedback
 ==================
-To contribute and find out how you can test BigIntegerExtender see the [Contributing Guide](//github.com/Davide95/BigIntegerExtender/wiki/How-to-Engage,-Contribute-and-Provide-Feedback).
+1. If you want to contribute, make sure that there is a corresponding issue for your change first. If there is none, create one.
+2. Create a fork in GitHub.
+3. Create a branch off the master branch with an adequate name.
+4. Commit your changes and push your changes to GitHub.
+5. Create a pull request against the origin's master branch.
+
+###DOs and DON'Ts
+* **DO** follow [C# Coding Conventions](http://msdn.microsoft.com/en-us/library/ff926074.aspx).
+* **DO** run all tests in BigIntegerExtenderTests project before committing your changes. When adding new features, include adequate tests for those.
+* **DO** run Code Analysis before committing your changes.
 
 License
 ==================
