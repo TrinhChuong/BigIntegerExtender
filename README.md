@@ -15,7 +15,7 @@ How to Engage, Contribute and Provide Feedback
 4. Commit your changes and push your changes to GitHub.
 5. Create a pull request against the origin's master branch.
 
-#DOs and DON'Ts
+##DOs and DON'Ts
 * **DO** follow [C# Coding Conventions](http://msdn.microsoft.com/en-us/library/ff926074.aspx).
 * **DO** run all tests in BigIntegerExtenderTests project before committing your changes. When adding new features, include adequate tests for those.
 * **DO** run Code Analysis before committing your changes.
