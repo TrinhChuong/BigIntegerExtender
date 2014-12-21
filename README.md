@@ -5,7 +5,41 @@ It contains:
 * **BigIntegerSerializable**: with this you can serialize System.Numerics.BigInteger objects.
 * **BigIntegerExtender**: it has an extension method that add the function Sqrt to System.Numerics.BigInteger objects.
 
-To understand how it works and how to use it, see the Examples (work in progress).
+Examples
+==================
+Remember to add System.Numerics.BigInteger, BigIntegerExtender and System.Xml before using this library in your projects.
+```cs
+using System;
+using System.Numerics;
+
+namespace Example1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                BigInteger value;
+                do
+                {
+                    Console.Write("Enter a valid number: ");
+                } while (!BigInteger.TryParse(Console.ReadLine(), out value));
+
+                try
+                {
+                    BigInteger sqrt = value.Sqrt();
+                    Console.WriteLine(String.Format("Sqrt of {0}: {1}\n", value, sqrt));
+                }
+                catch(ArithmeticException)
+                {
+                    Console.WriteLine(String.Format("Sqrt of {0}: NaN\n", value));
+                }
+            }
+        }
+    }
+}
+```
 
 How to Engage, Contribute and Provide Feedback
 ==================
