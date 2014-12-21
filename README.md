@@ -43,6 +43,7 @@ namespace Example1
 ```cs
 using System;
 using System.Numerics;
+using System.Xml.Serialization;
 
 namespace ConsoleApplication1
 {
@@ -59,7 +60,7 @@ namespace ConsoleApplication1
                 } while (!BigInteger.TryParse(Console.ReadLine(), out value));
 
                 var ms = new System.IO.MemoryStream();
-                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(BigIntegerSerializable));
+                var serializer = new XmlSerializer(typeof(BigIntegerSerializable));
                 serializer.Serialize(ms, (BigIntegerSerializable)value);
 
                 Console.Write("\nXML: ");
