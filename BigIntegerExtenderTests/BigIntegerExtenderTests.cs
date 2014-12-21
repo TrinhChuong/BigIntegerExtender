@@ -76,7 +76,7 @@ namespace BigIntegerExtenderTests
         }
 
         [TestMethod]
-        public void TestSqrt_PositiveRandomValue()
+        public void TestSqrt_WhenValueIsPositiveRandom()
         {
             var rnd = new Random(Guid.NewGuid().GetHashCode());
 
