@@ -13,27 +13,22 @@ namespace BigIntegerExtenderTests
         public void TestEquals()
         {
             BigIntegerSerializable originalValue = BigInteger.One;
-            int value1 = int.Parse(originalValue.ToString());
-            BigInteger value2 = originalValue;
-            Object value3 = originalValue;
+            BigInteger originalValueToBigInteger = originalValue;
+            Object originalValueToObject = originalValue;
 
             BigIntegerSerializable differentValue = BigInteger.Zero;
-            int dValue1 = int.Parse(differentValue.ToString());
-            BigInteger dValue2 = differentValue;
-            Object dValue3 = differentValue;
+            BigInteger differentValueToBigInteger = differentValue;
+            Object differentValueToObject = differentValue;
 
             Assert.AreNotEqual(originalValue, differentValue);
-            Assert.IsFalse(originalValue == differentValue);
             Assert.IsTrue(originalValue != differentValue);
+            Assert.IsFalse(originalValue == differentValue);
 
-            Assert.AreEqual(originalValue, value1);
-            Assert.AreEqual(originalValue, value2);
-            Assert.AreEqual(originalValue, value3);
+            Assert.AreEqual(originalValue, originalValueToBigInteger);
+            Assert.AreEqual(originalValue, originalValueToObject);
 
-
-            Assert.AreNotEqual(originalValue, dValue1);
-            Assert.AreNotEqual(originalValue, dValue2);
-            Assert.AreNotEqual(originalValue, dValue3);
+            Assert.AreNotEqual(originalValue, differentValueToBigInteger);
+            Assert.AreNotEqual(originalValue, differentValueToObject);
         }
 
         [TestMethod]
