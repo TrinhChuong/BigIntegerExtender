@@ -37,6 +37,7 @@ namespace BigIntegerExtenderTests
             BigIntegerSerializable value = BigInteger.MinusOne;
             var ms = new MemoryStream();
             var serializer = new XmlSerializer(value.GetType());
+
             serializer.Serialize(ms, value);
 
             // Reset the position
