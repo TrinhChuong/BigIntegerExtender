@@ -1,23 +1,33 @@
-﻿// Licensed under the MIT license. See LICENSE file in the project root for full license information.
-
-using System.Globalization;
+﻿using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace System.Numerics
 {
     /// <summary>
-    /// A wrapper for <c>System.Numerics.BigInteger</c> to support serialization.
+    /// A wrapper for <c>BigInteger</c> to support serialization.
     /// </summary>
+    /// <seealso cref="System.Numerics.BigInteger" />
     [Serializable]
-    public struct BigIntegerSerializable : IXmlSerializable
+    public struct BigIntegerSerializable : IXmlSerializable, IEquatable<BigIntegerSerializable>
     {
+        #region Equals
         /// <summary>
-        /// Determines whether <paramref name="obj"/> is equal 
-        /// to the current <c>System.Numerics.BigIntegerSerializable</c> object.
+        /// Returns a value that indicates whether the current instance and a specified object have the same value.
         /// </summary>
+        /// <remarks>
+        /// If the <c>obj</c> parameter is not a <c>BigIntegerSerializable</c> value,
+        /// but it is a data type for which an implicit conversion is defined,
+        /// the <c>Equals(Object)</c> method converts <c>obj</c> to a <c>BigIntegerSerializable</c> value
+        /// before it performs the comparison.
+        /// </remarks>
         /// <param name="obj">The object to compare.</param>
-        /// <seealso cref="System.Object.Equals(Object)" />
+        /// <returns>
+        /// <c>true</c> if the <c>obj</c> parameter is a <c>BigIntegerSerializable</c> object
+        /// or a type capable of implicit conversion to a <c>BigIntegerSerializable</c> value,
+        /// and its value is equal to the value of the current <c>BigIntegerSerializable</c> object;
+        /// otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (obj is BigIntegerSerializable)
@@ -27,100 +37,102 @@ namespace System.Numerics
         }
 
         /// <summary>
-        /// Returns a value that indicate whether the current instance
-        /// and a specified <c>System.Numerics.BigIntegerSerializable</c> object
-        /// have the same value.
+        /// Returns a value that indicates whether the current instance
+        /// and a specified <c>BigIntegerSerializable</c> object have the same value.
         /// </summary>
-        /// <param name="biS">The <c>System.Numerics.BigIntegerSerializable</c> object to compare.</param>
-        public bool Equals(BigIntegerSerializable biS)
+        /// <remarks>
+        /// This method implements the <c>IEquatable<T></c> interface
+        /// and performs slightly better than <c>Equals(Object)</c>
+        /// because it does not have to convert the other parameter
+        /// to a <c>BigIntegerSerializable</c> object.
+        /// </remarks>
+        /// <param name="other">The object to compare.</param>
+        /// <returns>
+        /// <c>true</c> if this <c>BigIntegerSerializable</c> object and other have the same value;
+        /// otherwise, <c>false</c>.
+        /// </returns>
+        bool IEquatable<BigIntegerSerializable>.Equals(BigIntegerSerializable other)
         {
-            return this.Value.Equals(biS.Value);
+            return this.Value.Equals(other.Value);
+        }
+        #endregion
+
+        #region ImplicitOperators
+        /// <summary>
+        /// Returns a value that indicates whether the values
+        /// of two <c>BigIntegerSerializable</c> objects are equal.
+        /// </summary>
+        /// <remarks>
+        /// Languages that do not support custom operators
+        /// can call the <c>BigIntegerSerializable.Equals(BigIntegerSerializable)</c> instance method instead.
+        /// <see cref="BigIntegerSerializable.Equals(BigIntegerSerializable)"/>
+        /// </remarks>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The second value to compare.</param>
+        /// <returns><c>true</c> if the left and right parameters have the same value;
+        /// otherwise, <c>false</c>.</returns>
+        public static bool operator ==(BigIntegerSerializable left, BigIntegerSerializable right)
+        {
+            return left.Equals(right);
         }
 
         /// <summary>
-        /// Determines whether the specified <c>System.Numerics.BigIntegerSerializable</c> object instances
-        /// are considered equal.
+        /// Returns a value that indicates whether
+        /// two <c>BigIntegerSerializable</c> objects have different values.
         /// </summary>
-        /// <param name="biS1">The first <c>System.Numerics.BigIntegerSerializable</c> object to compare.</param>
-        /// <param name="biS2">The second <c>System.Numerics.BigIntegerSerializable</c> object to compare.</param>
-        /// <seealso cref="System.Numerics.BigIntegerSerializable.Equals(BigIntegerSerializable)" />
-        public static bool operator ==(BigIntegerSerializable biS1, BigIntegerSerializable biS2)
+        /// <remarks>
+        /// Languages that do not support custom operators
+        /// can call the <c>BigIntegerSerializable.Equals(BigIntegerSerializable)</c> method
+        /// and reversing its value.
+        /// <see cref="BigIntegerSerializable.Equals(BigIntegerSerializable)"/>
+        /// </remarks>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The second value to compare.</param>
+        /// <returns><c>true</c> if the left and right parameters have different values;
+        /// otherwise, <c>true</c>.</returns>
+        public static bool operator !=(BigIntegerSerializable left, BigIntegerSerializable right)
         {
-            return biS1.Equals(biS2);
+            return !left.Equals(right);
         }
-
+        
         /// <summary>
-        /// Determines whether the specified <c>System.Numerics.BigIntegerSerializable</c> object instances
-        /// are not considered equal.
+        /// Defines an explicit conversion of a <c>BigIntegerSerializable</c> object
+        /// to a <c>BigInteger</c> object.
         /// </summary>
-        /// <param name="biS1">The first <c>System.Numerics.BigIntegerSerializable</c> object to compare.</param>
-        /// <param name="biS2">The second <c>System.Numerics.BigIntegerSerializable</c> object to compare.</param>
-        public static bool operator !=(BigIntegerSerializable biS1, BigIntegerSerializable biS2)
-        {
-            return !biS1.Equals(biS2);
-        }
-
-        /// <summary>
-        /// Returns the hash code for this <c>System.Numerics.BigIntegerSerializable</c> object.
-        /// </summary>
-        /// <seealso cref="System.Object.GetHashCode" />
-        public override int GetHashCode()
-        {
-            return this.Value.GetHashCode();
-        }
-
-        /// <summary>
-        /// An implicit type conversion operator 
-        /// from <c>System.Numerics.BigIntegerSerializable</c> 
-        /// to <c>System.Numerics.BigInteger</c>.
-        /// </summary>
-        /// <param name="value">The <c>System.Numerics.BigIntegerSerializable</c> object to convert.</param>
+        /// <param name="value">The value to convert to a <c>BigInteger</c> object.</param>
+        /// <returns>An object that contains the value of the <c>value</c> parameter.</returns>
         public static implicit operator BigInteger(BigIntegerSerializable value)
         {
             return value.Value;
         }
 
         /// <summary>
-        /// An implicit type conversion operator
-        /// from <c>System.Numerics.BigInteger</c> 
-        /// to <c>System.Numerics.BigIntegerSerializable</c>.
+        /// Defines an explicit conversion of a <c>BigInteger</c> object
+        /// to a <c>BigIntegerSerializable</c> object.
         /// </summary>
-        /// <param name="value">The <c>System.Numerics.BigInteger</c> object to convert.</param>
+        /// <param name="value">The value to convert to a <c>BigIntegerSerializable</c> object.</param>
+        /// <returns>An object that contains the value of the <c>value</c> parameter.</returns>
         public static implicit operator BigIntegerSerializable(BigInteger value)
         {
             return new BigIntegerSerializable
-                {
-                    Value = value
-                };
+            {
+                Value = value
+            };
         }
+        #endregion
 
-
-        /// <summary>
-        /// An implicit type conversion operator
-        /// from <c>System.Int64</c> 
-        /// to <c>System.Numerics.BigIntegerSerializable</c>.
-        /// </summary>
-        /// <param name="value">The <c>System.Int64</c> object to convert.</param>
-        public static implicit operator BigIntegerSerializable(Int64 value)
-        {
-            return new BigIntegerSerializable
-                {
-                    Value = (BigInteger)value
-                };
-        }
-
-        /// <summary>Converts the numeric value of the current <c>System.Numerics.BigInteger</c> object
-        /// to its equivalent string representation.</summary>
-        public override string ToString()
-        {
-            return this.Value.ToString();
-        }
-
+        #region IXmlSerializable
+        /// <returns>Returns <c>null</c>.</returns>
+        /// <seealso cref="System.Xml.Serialization.IXmlSerializable.GetSchema()" />
         Xml.Schema.XmlSchema IXmlSerializable.GetSchema()
         {
             return null;
         }
 
+        /// <summary>
+        /// Generates a <c>BigIntegerSerializable</c> object from its XML representation.
+        /// </summary>
+        /// <param name="reader">The XmlReader stream from which the object is deserialized. </param>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="reader" /> is <c>null</c>.</exception>
         /// <exception cref="System.FormatException">Thrown when <paramref name="reader" /> is not a string representation of a number.</exception>
         void IXmlSerializable.ReadXml(XmlReader reader)
@@ -131,6 +143,10 @@ namespace System.Numerics
             this.Value = BigInteger.Parse(reader.ReadString(), CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Converts a <c>BigIntegerSerializable</c> object into its XML representation.
+        /// </summary>
+        /// <param name="writer">The <c>XmlWriter</c> stream to which the object is serialized.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="writer" /> is <c>null</c>.</exception>
         void IXmlSerializable.WriteXml(XmlWriter writer)
         {
@@ -139,7 +155,34 @@ namespace System.Numerics
 
             writer.WriteValue(this.Value.ToString(CultureInfo.InvariantCulture));
         }
+        #endregion
 
+        /// <summary>
+        /// Returns the hash code for the current <c>BigIntegerSerializable</c> object.
+        /// </summary>
+        /// <remarks>It is equal calling <c>((BigInteger)this).GetHashCode()</c>.</remarks>
+        /// <returns>A 32-bit signed integer hash code.</returns>
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
+
+        /// <summary>
+        /// Converts the numeric value of the current <c>BigIntegerSerializable</c> object
+        /// to its equivalent string representation.
+        /// </summary>
+        /// <remarks>
+        /// For better ToString methods, <see cref="System.Numerics.BigInteger.ToString(IFormatProvider)" />,
+        /// <see cref="System.Numerics.BigInteger.ToString(String)" />,
+        /// <see cref="System.Numerics.BigInteger.ToString(String, IFormatProvider)" />.
+        /// </remarks>
+        /// <returns>The string representation of the current <c>BigIntegerSerializable</c> value.</returns>
+        /// <seealso cref="System.Numerics.BigInteger.ToString()" />
+        public override string ToString()
+        {
+            return this.Value.ToString();
+        }
+        
         private BigInteger Value;
     }
 }

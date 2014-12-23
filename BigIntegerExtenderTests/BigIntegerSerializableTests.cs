@@ -49,15 +49,5 @@ namespace BigIntegerExtenderTests
 
             value = (BigIntegerSerializable)serializer.Deserialize(ms);
         }
-
-        // It is not a test, 
-        // but guarantee that implicit type conversion operators
-        // in System.Numerics.BigIntegerSerializable works.
-        public void TestImplicitTypeConversionOperator()
-        {
-            BigIntegerSerializable originalValue = BigInteger.One;
-            BigInteger value1 = originalValue;
-            originalValue = 1;
-        }
     }
 }
