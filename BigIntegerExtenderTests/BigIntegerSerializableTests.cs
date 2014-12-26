@@ -27,8 +27,8 @@ namespace BigIntegerExtenderTests
             Assert.AreEqual(originalValue, originalValueToBigInteger);
             Assert.AreEqual(originalValue, originalValueToObject);
 
-            //Assert.AreNotEqual(originalValue, differentValueToBigInteger);
-            //Assert.AreNotEqual(originalValue, differentValueToObject);
+            Assert.AreNotEqual(originalValue, differentValueToBigInteger);
+            Assert.AreNotEqual(originalValue, differentValueToObject);
         }
 
         [TestMethod]
