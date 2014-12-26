@@ -1,4 +1,5 @@
-﻿[assembly: System.CLSCompliant(true)]
+﻿using System.Diagnostics.Contracts;
+[assembly: System.CLSCompliant(true)]
 
 namespace System.Numerics
 {
@@ -18,13 +19,12 @@ namespace System.Numerics
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sqrt")]
         public static BigInteger Sqrt(this BigInteger value)
         {
-            if (value.Sign < 0)
-                throw new ArithmeticException("NaN");
+            Contract.Requires<ArithmeticException>(value.Sign >= 0, "NaN");
+            Contract.Ensures(Contract.Result<BigInteger>().Sign >= 0);
 
-            // 0 * 0 = 0.
             // 1 * 1 = 1.
-            if (value.IsZero || value.IsOne)
-                return value;
+            if (value.IsOne)
+                return BigInteger.One;
 
             // An initial approximation of the square root of n.
             BigInteger squareRoot = value / 2;

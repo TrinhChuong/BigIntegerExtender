@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -30,7 +31,10 @@ namespace System.Numerics
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj is BigIntegerSerializable)
+            if(obj == null)
+                return false;
+
+            else if (obj is BigIntegerSerializable)
                 return this.Value.Equals(((BigIntegerSerializable)obj).Value);
 
             return this.Value.Equals(obj);
@@ -132,12 +136,8 @@ namespace System.Numerics
         /// </summary>
         /// <param name="reader">The XmlReader stream from which the object is deserialized. </param>
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="reader" /> is <c>null</c>.</exception>
-        /// <exception cref="System.FormatException">Thrown when <paramref name="reader" /> is not a string representation of a number.</exception>
         void IXmlSerializable.ReadXml(XmlReader reader)
         {
-            if (reader == null)
-                throw new ArgumentNullException("reader");
-
             this.Value = BigInteger.Parse(reader.ReadString(), CultureInfo.InvariantCulture);
         }
 
@@ -145,12 +145,8 @@ namespace System.Numerics
         /// Converts a <c>BigIntegerSerializable</c> object into its XML representation.
         /// </summary>
         /// <param name="writer">The <c>XmlWriter</c> stream to which the object is serialized.</param>
-        /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="writer" /> is <c>null</c>.</exception>
         void IXmlSerializable.WriteXml(XmlWriter writer)
         {
-            if (writer == null)
-                throw new ArgumentNullException("writer");
-
             writer.WriteValue(this.Value.ToString(CultureInfo.InvariantCulture));
         }
         #endregion
