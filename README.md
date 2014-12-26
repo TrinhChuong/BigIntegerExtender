@@ -45,7 +45,7 @@ using System;
 using System.Numerics;
 using System.Xml.Serialization;
 
-namespace ConsoleApplication1
+namespace Example2
 {
     class Program
     {
