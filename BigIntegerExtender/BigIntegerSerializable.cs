@@ -31,7 +31,7 @@ namespace System.Numerics
         public override bool Equals(object obj)
         {
             if (obj is BigIntegerSerializable)
-                return this.Equals((BigIntegerSerializable)obj);
+                return this.Value.Equals(((BigIntegerSerializable)obj).Value);
 
             return this.Value.Equals(obj);
         }
@@ -41,7 +41,7 @@ namespace System.Numerics
         /// and a specified <c>BigIntegerSerializable</c> object have the same value.
         /// </summary>
         /// <remarks>
-        /// This method implements the <c>IEquatable<T></c> interface
+        /// This method implements the <c>IEquatable</c> interface
         /// and performs slightly better than <c>Equals(Object)</c>
         /// because it does not have to convert the other parameter
         /// to a <c>BigIntegerSerializable</c> object.
@@ -65,7 +65,6 @@ namespace System.Numerics
         /// <remarks>
         /// Languages that do not support custom operators
         /// can call the <c>BigIntegerSerializable.Equals(BigIntegerSerializable)</c> instance method instead.
-        /// <see cref="BigIntegerSerializable.Equals(BigIntegerSerializable)"/>
         /// </remarks>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
@@ -84,7 +83,6 @@ namespace System.Numerics
         /// Languages that do not support custom operators
         /// can call the <c>BigIntegerSerializable.Equals(BigIntegerSerializable)</c> method
         /// and reversing its value.
-        /// <see cref="BigIntegerSerializable.Equals(BigIntegerSerializable)"/>
         /// </remarks>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
