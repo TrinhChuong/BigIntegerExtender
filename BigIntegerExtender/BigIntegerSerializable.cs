@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
 

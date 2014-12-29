@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-[assembly: System.CLSCompliant(true)]
+﻿[assembly: System.CLSCompliant(true)]
 
 namespace System.Numerics
 {
@@ -19,8 +18,8 @@ namespace System.Numerics
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sqrt")]
         public static BigInteger Sqrt(this BigInteger value)
         {
-            Contract.Requires<ArithmeticException>(value.Sign >= 0, "NaN");
-            Contract.Ensures(Contract.Result<BigInteger>().Sign >= 0);
+            if (value.Sign < 0)
+                throw new ArithmeticException("NaN");
 
             // 1 * 1 = 1.
             if (value.IsOne)
