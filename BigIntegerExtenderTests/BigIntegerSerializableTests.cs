@@ -1,8 +1,8 @@
-﻿using System;
-using System.Numerics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Xml.Serialization;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.IO;
+using System.Numerics;
+using System.Xml.Serialization;
 
 namespace BigIntegerExtenderTests
 {
