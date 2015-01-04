@@ -35,8 +35,8 @@ namespace BigIntegerExtenderTests
         [TestMethod]
         public void TestSqrt_WhenIsPerfect()
         {
-            BigInteger sqrt = 4;
-            Assert.AreEqual(sqrt, BigInteger.Pow(sqrt, 2).Sqrt());
+            BigInteger value = 9;
+            Assert.AreEqual(value, BigInteger.Pow(value.Sqrt(), 2));
         }
 
         [TestMethod]
