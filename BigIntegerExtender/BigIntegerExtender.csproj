@@ -149,4 +149,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PackageId>BigIntegerExtender</PackageId>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/trinhchuong/bigintegerextender</RepositoryUrl>
+  </PropertyGroup>
 </Project>
